@@ -1,6 +1,6 @@
 ## Cached matrix solve
 
-# Make cached inverse matrix
+# Make cached matrix (for cache inversions)
 makeCacheMatrix <- function(x = matrix()) {
   inv<-NULL
   mat<-x
@@ -21,8 +21,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-# Return inversed matrix
-
+# Return inversed matrix (cached calculation)
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   m<-x$get_inv()
@@ -33,5 +32,4 @@ cacheSolve <- function(x, ...) {
   m<-solve(x$get())
   x$set_inv(m)
   m
-  
 }
