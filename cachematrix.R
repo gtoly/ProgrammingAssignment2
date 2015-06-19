@@ -1,9 +1,10 @@
 ## Cached matrix solve
 
-# Make cached matrix (for cache inversions)
+# creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()) {
-  inv<-NULL
-  mat<-x
+  inv<-NULL # cached invertion
+  mat<-x    # the matrix itself
+  # object methods
   get<-function(){
     mat 
   }
@@ -21,15 +22,13 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-# Return inversed matrix (cached calculation)
+# computes the inverse of the special "matrix" returned by makeCacheMatrix above
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
   m<-x$get_inv()
-  if (!is.null(m)){
-    message("get cache")
+  if (!is.null(m)){ # return cached result
     return(m)
   }
   m<-solve(x$get())
-  x$set_inv(m)
+  x$set_inv(m)  # remember result for future use
   m
 }
