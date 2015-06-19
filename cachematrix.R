@@ -1,9 +1,10 @@
 ## Cached matrix solve
 
-# creates a special "matrix" object that can cache its inverse.
+## creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()) {
   inv<-NULL # cached invertion
   mat<-x    # the matrix itself
+  
   # object methods
   get<-function(){
     mat 
@@ -18,11 +19,13 @@ makeCacheMatrix <- function(x = matrix()) {
   set_inv<-function(new_inv){
     inv<<-new_inv
   }
+  
+  # "matrix" object
   list(get=get,set=set,get_inv=get_inv,set_inv=set_inv)
 }
 
 
-# computes the inverse of the special "matrix" returned by makeCacheMatrix above
+## computes the inverse of the special "matrix" returned by makeCacheMatrix above
 cacheSolve <- function(x, ...) {
   m<-x$get_inv()
   if (!is.null(m)){ # return cached result
